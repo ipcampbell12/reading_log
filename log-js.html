@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<script>
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
+    function logEntry(){
+    //will run function in server side code
+
+   if(validate()){ 
+    var book = document.getElementById("book").value;
+    var author = document.getElementById("author").value;
+    var type = document.getElementById("type").value;
+    var minutes = document.getElementById("minutes").value;
+    var pages = document.getElementById("pages").value;
+    var summary = document.getElementById("summary").value;
+    //grab username id element and send it to script
+
+    google.script.run.userClicked(book,author,type,minutes,pages,summary);
+    //this script runs script from Code.gs when the button is clicked 
+    //these variables are used as arguments in the userClicke function in Code.gs
+
+var minutesM = parseInt(minutes); 
+var sentences = summary.split(".").length-1; 
+
+ 
+  if(minutesM > 20){
+    alert (`You read ${pages} pages of ${book} by ${author}. You also read for ${minutesM} minutes. Excellent job! Way to work on becoming a better reader! For your summary, you wrote ${sentences} sentences.`);   
+    } else{
+      alert(`You read ${pages} pages of ${book} by ${author}. You also read for ${minutesM} minutes. You need to spend more time reading if you want to become a better reader.For your summary, you wrote ${sentences} sentences.`);
+    }
+
+  clearInputs(["book","author","type","minutes","pages","summary"])
+
+   } else{
+     $("#errorMessage").toast('show');
+   }       
+    }
+
+function clearInputs(inputs){
+  inputs.forEach(function(input){
+    var el = document.getElementById(input);
+    el.value = "";
+      });
+}
+
+
+function validate(){
+var fieldsToValidate = document.querySelectorAll("#userform input, #userform select, #userform textarea");
+Array.prototype.forEach.call(fieldsToValidate, function(el){
+   if( el.checkValidity()){
+      el.classList.remove("is-invalid")
+   } else{
+      el.classList.add("is-invalid")
+   }
+  });
+
+
+
+return Array.prototype.every.call(fieldsToValidate, function(el){
+    return el.checkValidity();
+  });
+//is-invalid
+}
+
+
+   function onSuccess(value){
+       var div = document.getElementById('total');
+       div.innerHTML = value; 
+       //sets div value equal to output from scripts function  
+      }
+    
+     function runScript(){
+     
+     google.script.run.withSuccessHandler(onSuccess).getTotalMinutes2();
+     
+     }
+
+
+   function onSuccess7(value){
+       var div = document.getElementById('totalDays');
+       div.innerHTML = value; 
+       //sets div value equal to output from scripts function  
+      }
+    
+     function runScript7(){
+     
+     google.script.run.withSuccessHandler(onSuccess7).getDays();
+     
+     }
+     
+     function onSuccess2(value){
+       var div = document.getElementById('total2');
+       div.innerHTML = value; 
+       //sets div value equal to output from scripts function  
+      }
+    
+     function runScript2(){
+     
+     google.script.run.withSuccessHandler(onSuccess2).getTotalPages();
+     
+     }
+
+    function onSuccess3(value){
+     var div = document.getElementById('total3');
+       div.innerHTML = value; 
+       //sets div value equal to output from scripts function 
+    
+
+    }
+
+    function runScript3(){
+        
+      google.script.run.withSuccessHandler(onSuccess3).booksRead();
+        
+    }
+
+  function onSuccess4(value){
+     var div = document.getElementById('total4');
+       div.innerHTML = value; 
+       //sets div value equal to output from scripts function 
+    
+
+    }
+
+    function runScript4(){
+        
+      google.script.run.withSuccessHandler(onSuccess4).booksRead2();
+        
+    }
+
+    function onSuccess5(value){
+     var div = document.getElementById('total5');
+       div.innerHTML = value; 
+       //sets div value equal to output from scripts function 
+    
+
+    }
+
+    function runScript5(){
+        
+      google.script.run.withSuccessHandler(onSuccess5).average();
+        
+    }
+
+    function onSuccess6(value){
+     var div = document.getElementById('total5');
+       div.innerHTML = value; 
+       //sets div value equal to output from scripts function 
+    
+
+    }
+
+    function runScript6(){
+        
+      google.script.run.withSuccessHandler(onSuccess6).getAuthors();
+        
+    }
+
+
+   function loadView(options){
+    
+    //set "app" as the default id and set empty callback function as the default callback function
+      var id = typeof options.id === "undefined" ? "app" : options.id;
+      var cb = typeof options.callback === "undefined" ? function(){} : options.callback;
+      
+      google.script.run.withSuccessHandler(function(html){
+      document.getElementById(id).innerHTML = html;
+      
+      //checks if there were any params, if not just run the callback function, otherwise run the function with the params 
+       typeof options.params === "undefined" ?  cb() : cb(options.params);
+    })[options.func]();
+    
+    }
+    
+  function loadEnglishView(){
+       loadView({func:"loadEnglishView"});
+   
+    }
+    
+    function loadSpanishView(){
+    
+       loadView({func: "loadSpanishView"})
+    }
+    
+     function loadOverviewView(){
+    
+       loadView({func: "loadOverviewView"})
+    }
+
+    document.getElementById("english-link").addEventListener("click",loadEnglishView);
+    document.getElementById("spanish-link").addEventListener("click",loadSpanishView);
+    document.getElementById("overview-link").addEventListener("click",loadOverviewView);
+    
+
+
+    /*document.addEventListener("DOMContentLoaded", runScript);
+    document.addEventListener("DOMContentLoaded", runScript2);
+    document.addEventListener("DOMContentLoaded", runScript3);
+    document.addEventListener("DOMContentLoaded", runScript4);
+    document.addEventListener("DOMContentLoaded", runScript5);
+    document.addEventListener("DOMContentLoaded", runScript6); */
+  
+</script>
+
+
+
+
+
+
+
+
+
