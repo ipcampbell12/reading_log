@@ -1,0 +1,87 @@
+       <h3 class="text-center"><strong><u>Reading Log</strong></u></h3>
+       <h5 class="text-center">English</h5>
+     <div id = "userform">
+
+     <div class = "form-floating mb-3">
+      <input type = "text" class = "form-control" id = "book" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Write the title  of the book you read" placeholder = "Book Title" required> 
+       <label for="book" class = "form-label"> Book </label>
+      <div class = "invalid-feedback">
+        Please write the title of a book 
+      </div>
+       
+    </div>
+    
+     <br>
+     
+      <div class = "form-floating mb-3">
+      <input type = "text" class = "form-control" id = "author" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Write the name of the author." placeholder = "Name of Author"required> 
+       <label for = "author"> Author </label>
+       <div class = "invalid-feedback">
+        Please write the name of an author 
+      </div>
+    </div>
+    
+     <br>
+     
+    <div class = "form-floating mb-3">
+      
+       <select id = "type" class = "form-control" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Select whether you read fiction or non-fiction." required>
+      <option>  </option>
+       <option> Fiction </option>
+       <option> Nonfiction </option> 
+       </select>
+        <label for = "type">Type</label>
+
+        <div class = "invalid-feedback">
+        Please select fiction or nonfiction 
+      </div>
+    </div>
+    
+    <br>
+    
+    <div class = "form-floating mb-3">
+      
+      <input type = "number" class = "form-control" id = "minutes" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Enter how many minutes you read. You should be reading for at least 20 minutes a night." placeholder = "Number of minutes you spent reading" required>
+      <label for = "minutes"> Minutes </label>
+       <div class = "invalid-feedback">
+        Please enter how many minutes you read 
+      </div>
+    </div>
+    
+    <br>
+    
+     <div class = "form-floating mb-3">
+      
+      <input type = "number" class = "form-control" id = "pages" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Enter how many pages you read." 
+      placeholder = "Number of pages you read." required>
+      <label for = "pages"> Pages </label>
+       <div class = "invalid-feedback">
+        Please enter how many pages you read
+      </div>
+    </div>
+    
+    <br>
+  
+   <div class = "form-floating mb-3">
+     
+      <textarea type = "text" class = "form-control" id = "summary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="You need to write at least 3 sentences." placeholder = "Write at least 3 sentences about what you read. Don't forget capitals and periods." style="height: 100px" required minlength="30"></textarea>
+       <label for = "summary"> Summary </label>
+       <div class = "invalid-feedback">
+        Please write a summary with at least 3 sentences. 
+      </div>
+    </div>
+  
+  <br> 
+  
+   <div  class = "form-row">
+      <div class = "col text-center">
+    <button id= "btn" onclick = "logEntry()"type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click here to submit entry"
+ >
+      Submit Log Entry
+    </button>
+      </div>
+    </div>
+    <br>
+     </div>
+  
+
